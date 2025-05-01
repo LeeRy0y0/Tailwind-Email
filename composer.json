@@ -24,5 +24,8 @@
             "email": "your-email@example.com"
         }
     ],
+    "scripts": {
+        "build:email": "NODE_ENV=production tailwindcss -c tailwind.email.config.js -i resources/css/email.css -o public/css/email-compiled.css"
+    },
     "license": "MIT"
 }
