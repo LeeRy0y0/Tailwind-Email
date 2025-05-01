@@ -14,12 +14,8 @@ class TailwindCssInliner
         }
     
         $cssContent = file_get_contents($cssPath);
-
-        $premailer = new Premailer($htmlContent, [
-            'css' => $cssContent,
-            'method' => 'html',
-        ]);
-
-        return $premailer->transform();
+   
+        // Tilføj <style> tag øverst i HTML'en, som fedeisas/laravel-mail-css-inliner vil inline automatisk
+        return "<style>{$cssContent}</style>\n" . $htmlContent;
     }
 }
