@@ -7,7 +7,12 @@ class TailwindCssInliner
 {
     public function inlineCss(string $htmlContent): string
     {
-        $cssPath = base_path('resources/css/email-compiled.css');
+        $cssPath = __DIR__ . '/../resources/css/email-compiled.css';
+
+        if (!file_exists($cssPath)) {
+            throw new \Exception("CSS-stien findes ikke: $cssPath");
+        }
+    
         $cssContent = file_get_contents($cssPath);
 
         $premailer = new Premailer($htmlContent, [
